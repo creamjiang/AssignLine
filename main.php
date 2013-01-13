@@ -16,10 +16,12 @@
 //		error_reporting(E_ALL);
 //		ini_set('display_errors', 'On');
         require_once 'slcapiwrapper.php';
-        $api = new slcAPIWrapper();
-
+        if (!isset($_SESSION['accessToken']))
+        {
+            $api = new slcAPIWrapper();
+            $_SESSION['Instantiated'] = true ;
+        }
         $apiCalls = array('student', 'students', 'sections', 'attendances', 'courses', 'reportCards', 'teacher', 'parents', 'studentAssessments');
-
 		$Picturetake = false ;
 //		var_dump($_POST);
 		echo '<form method="post" action="' . $_SERVER['PHP_SELF'] . '">';
